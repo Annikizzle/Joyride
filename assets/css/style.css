@@ -1,0 +1,20 @@
+body {
+    background-image: url("../images/gradient.jpg");
+    background-repeat: repeat-x;
+}
+
+.jumbotron {
+    background-image: url("../images/sky.png");
+    background-size: cover;
+    font-family: 'Rubik Mono One', sans-serif;
+    color: white;
+}
+
+.lead {
+    font-family: 'Bungee Inline', cursive;
+}
+
+#map {
+    height: 600px;
+    width: 70%;
+}
