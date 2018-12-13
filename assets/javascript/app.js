@@ -9,20 +9,23 @@ var longitude;
 
 // }
 
-navigator.geolocation.getCurrentPosition(function(position){
-    console.log(position);
+// navigator.geolocation.getCurrentPosition(function(position){
+//     // console.log(position);
 
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
-    var latlong = position.coords.latitude + "," + position.coords.longitude;
-    console.log(latlong);
-    // latitude = position.coords.latitude;
-    // longitude = position.coords.longitude;
+//     // console.log(position.coords.latitude);
+//     // console.log(position.coords.longitude);
+//     var latlong = position.coords.latitude + "," + position.coords.longitude;
+//     console.log(latlong);
     
-    $("#mapsImage").attr("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyBLjJhcaHNLroE3ch8eeLZJEmtA1fziUFg&q="+latlong+"&center="+latlong)
+//     $("#mapsImage").attr("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyBLjJhcaHNLroE3ch8eeLZJEmtA1fziUFg&q="+latlong+"&center="+latlong)
 
+// })
 
-    // initMap();
+var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=44092,us&appid=f9d254aedad74e95688746dad9882b99";
 
-    // $("#map").attr("src", "https://maps.googleapis.com/maps/api/js?key=<key>&callback=initMap")
-})
+$.ajax({
+    url: queryUrl,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+  });
