@@ -1,15 +1,30 @@
 body {
-    background-color: white;
-    background-repeat: repeat-x;
+    /* background-color: #3861a2; */
+    background-image: url("../images/weather.png");
+    background-repeat: repeat;
 }
 
 .jumbotron {
-    background-image: url("../images/sky.png");
+    background-color: #356BC1;
     background-size: cover;
     font-family: 'Rubik Mono One', sans-serif;
     color: white;
-    max-height: 200px;
+    max-height: 220px;
+    padding: 40px;
+    line-height: 10px;
+   
 }
+
+.container {
+    margin: 0px;
+    padding: 10px;
+    text-align: left;
+}
+
+#icons {
+    text-align: right;
+    
+}   
 
 .lead {
     font-family: 'Bungee Inline', cursive;
@@ -17,6 +32,6 @@ body {
 
 #map {
     height: 580px;
-    width: 70%;
+    width: 60%;
 }
 
