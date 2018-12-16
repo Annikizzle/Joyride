@@ -1,24 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-<!-----Links----->
-<link rel="stylesheet" href="assets/css/reset.css">
-<!--bootstrap css-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    
-<!--style-->
-<link rel="stylesheet" href="assets/css/style.css">
-<!--jQuery-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--app.js-->
-<script src="assets/javascript/app.js"></script>
-<!--firebase-->
-<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
-</head>
-<body>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <link href="assets/css/reset.css" rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css?family=Bungee+Inline|Rubik+Mono+One"
+            rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+            integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+            crossorigin="anonymous">
+        <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+
+
+
+        <title>Joyride - Your friendly roadtrip-weather app!</title>
+
+        <div class="jumbotron jumbotron-fluid">
+            <div id="icons">
+                <!-- <i class="fas fa-sun fa-2x"></i> -->
+                <i class="fas fa-motorcycle fa-4x"></i>
+                <!-- <i class="fas fa-cloud-showers-heavy fa-2x"></i> -->
+                <i class="fas fa-car fa-4x"></i>
+                <!-- <i class="fas fa-cloud-sun-rain fa-2x"></i> -->
+                <i class="fas fa-bicycle fa-4x"></i>
+            </div>
+            <div class="container">
+                <h1 class="display-4">Joyride</h1>
+                <p class="lead">Plan your trip from A to B, and see the weather
+                    along the way!</p>
+
+            </div>
+        </div>
+
+    </head>
+    <body>
     
+        <div class="row">
+            <div id="map" class="col-lg-8"></div>
+            <script>
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+        var map, infoWindow;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 15
+            });
+            infoWindow = new google.maps.InfoWindow;
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+    </script>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-block">
+
+                        <h4 class="card-title">Your Route:</h4>
+                        <p class="card-text">With supporting text below as a
+                            natural
+                            lead-in to additional content.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text text-right">Footer Text - Possible
+                            Link
+                            Out</p>
+                    </div>
+                    <div class="card-block">
+
+                        <h4 class="card-title">Your Route:</h4>
+                        <p class="card-text">With supporting text below as a
+                            natural
+                            lead-in to additional content.</p>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-text text-right">Footer Text - Possible
+                            Link
+                            Out</p>
+                    </div>
+                </div>
+
+                <script
+                    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <script
+                    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+                <script
+                    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
+                <!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
+                <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLjJhcaHNLroE3ch8eeLZJEmtA1fziUFg&callback=initMap">
+</div>
+    </script>
+
 </body>
+
+
 </html>
