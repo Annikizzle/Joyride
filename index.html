@@ -10,128 +10,190 @@
             crossorigin="anonymous">
         <link href="assets/css/style.css" rel="stylesheet">
         <link
-            href="https://fonts.googleapis.com/css?family=Bungee+Inline|Rubik+Mono+One"
+            href="https://fonts.googleapis.com/css?family=Bungee+Inline|Rubik+Mono+One|Open+Sans"
             rel="stylesheet">
         <link rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
             integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
             crossorigin="anonymous">
+        <link
+            href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+            rel="stylesheet" id="bootstrap-css">
+        <script
+            src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        
 
+            <title>Joyride - Your friendly roadtrip-weather app!</title>
 
-
-        <title>Joyride - Your friendly roadtrip-weather app!</title>
-
-        <div class="jumbotron jumbotron-fluid">
-            <div id="icons">
-                <!-- <i class="fas fa-sun fa-2x"></i> -->
-                <i class="fas fa-motorcycle fa-4x"></i>
-                <!-- <i class="fas fa-cloud-showers-heavy fa-2x"></i> -->
-                <i class="fas fa-car fa-4x"></i>
-                <!-- <i class="fas fa-cloud-sun-rain fa-2x"></i> -->
-                <i class="fas fa-bicycle fa-4x"></i>
+            <div class="jumbotron jumbotron-fluid" id="jumbotron">
+                <div class="container">
+                    <h1 class="display-4"><img src="assets/images/icon.png"
+                            height="100px" width="100px"> Joyride</h1>
+                    <p class="lead">Plan your trip from A to B, and see the
+                        weather
+                        along the way!</p>
+                </div>
             </div>
-            <div class="container">
-                <h1 class="display-4">Joyride</h1>
-                <p class="lead">Plan your trip from A to B, and see the weather
-                    along the way!</p>
+            <nav class="navbar navbar-default navbar-expand-lg navbar-light">
+                <div class="navbar-header d-flex col">
+                    <a class="navbar-brand" href="#"></a>
+                    <button type="button" data-target="#navbarCollapse"
+                        data-toggle="collapse" class="navbar-toggle
+                        navbar-toggler
+                        ml-auto">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collection of nav links, forms, and other content for toggling -->
+                <div id="navbarCollapse" class="collapse navbar-collapse
+                    justify-content-start">
+                    <form class="navbar-form form-inline">
 
-            </div>
-        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right ml-auto">
+                        <li class="nav-item">
+                            <a data-toggle="dropdown" class="nav-link
+                                dropdown-toggle" href="#">Login</a>
+                            <ul class="dropdown-menu form-wrapper">
+                                <li>
+                                    <form
+                                        action="/examples/actions/confirmation.php"
+                                        method="post">
+                                        <p class="hint-text">Sign in with your
+                                            social media account</p>
+                                        <div class="form-group social-btn
+                                            clearfix">
+                                            <a href="#" class="btn btn-primary
+                                                pull-left"><i class="fa
+                                                    fa-facebook"></i> Facebook</a>
+                                            <a href="#" class="btn btn-info
+                                                pull-right"><i class="fa
+                                                    fa-twitter"></i> Twitter</a>
+                                        </div>
+                                        <div class="or-seperator"><b>or</b></div>
+                                        <div class="form-group">
+                                            <input type="text"
+                                                class="form-control"
+                                                placeholder="Username"
+                                                required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password"
+                                                class="form-control"
+                                                placeholder="Password"
+                                                required="required">
+                                        </div>
+                                        <input type="submit" class="btn
+                                            btn-primary
+                                            btn-block" value="Login">
+                                        <div class="form-footer">
+                                            <a href="#">Forgot Your password?</a>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" data-toggle="dropdown" class="btn
+                                btn-primary dropdown-toggle get-started-btn mt-1
+                                mb-1">Sign up</a>
+                            <ul class="dropdown-menu form-wrapper">
+                                <li>
+                                    <form
+                                        action="/examples/actions/confirmation.php"
+                                        method="post">
+                                        <p class="hint-text">Fill in this form
+                                            to
+                                            create your account!</p>
+                                        <div class="form-group">
+                                            <input type="text"
+                                                class="form-control"
+                                                placeholder="Username"
+                                                required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password"
+                                                class="form-control"
+                                                placeholder="Password"
+                                                required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password"
+                                                class="form-control"
+                                                placeholder="Confirm Password"
+                                                required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="checkbox-inline"><input
+                                                    type="checkbox"
+                                                    required="required"> I
+                                                accept
+                                                the <a href="#">Terms &amp;
+                                                    Conditions</a></label>
+                                        </div>
+                                        <input type="submit" class="btn
+                                            btn-primary
+                                            btn-block" value="Sign up">
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </head>
+        <body>
 
-    </head>
-    <body>
-    
-        <div class="row">
-            <div id="map" class="col-lg-8"></div>
-            <script>
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
-        var map, infoWindow;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 15
-            });
-            infoWindow = new google.maps.InfoWindow;
-
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                }, function () {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
-        }
-
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                'Error: The Geolocation service failed.' :
-                'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
-        }
-    </script>
+            <!-- GOOGLE MAP GOES HERE -->
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-block">
 
                         <h4 class="card-title">Your Route:</h4>
-                        <p class="card-text">With supporting text below as a
-                            natural
-                            lead-in to additional content.</p>
+                        <p class="card-text">Google Maps and OpenWeather API</p>
                     </div>
                     <div class="card-footer">
-                        <p class="card-text text-right">Footer Text - Possible
-                            Link
-                            Out</p>
+                        <p class="card-text text-right">Save this route</p>
                     </div>
                     <div class="card-block">
 
                         <h4 class="card-title">Your Route:</h4>
-                        <p class="card-text">With supporting text below as a
-                            natural
-                            lead-in to additional content.</p>
+                        <p class="card-text">Google Maps and OpenWeather API</p>
                     </div>
                     <div class="card-footer">
-                        <p class="card-text text-right">Footer Text - Possible
-                            Link
-                            Out</p>
+                        <p class="card-text text-right">Save this route</p>
                     </div>
                 </div>
+            </div>
 
-                <script
-                    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                    crossorigin="anonymous"></script>
-                <script
-                    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                    crossorigin="anonymous"></script>
-                <script
-                    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                    crossorigin="anonymous"></script>
-                <!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
-                <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLjJhcaHNLroE3ch8eeLZJEmtA1fziUFg&callback=initMap">
+            <script
+                src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+            <script
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+            <!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLjJhcaHNLroE3ch8eeLZJEmtA1fziUFg&callback=initMap">
+</div>
 </div>
     </script>
+            <div class="footer-margin">
+                <footer class="card-footer footer-font-style
+                    text-muted footer-position">
+                        <p><img src="assets/images/smallicon.png"
+                            height="50px" width="50px"> © Drew Lauck, Terrell Payne, John
+                            Phillips and Annika Traner</p>
+                    </footer>
 
-</body>
-
-
-</html>
+                </html>
