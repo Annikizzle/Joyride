@@ -3,7 +3,7 @@ body {
     background-repeat: repeat;
 }
 
-.jumbotron {
+#jumbotron {
     background-color: #356BC1;
     background-size: cover;
     font-family: 'Rubik Mono One', sans-serif;
