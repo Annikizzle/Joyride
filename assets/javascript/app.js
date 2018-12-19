@@ -120,97 +120,11 @@ $.ajax({
 });
   // firebase
 
-//Initialize Firebase
-//  var config = {
-//     apiKey: "AIzaSyAOiJtpQDwHqgC0vawZ4zCgEN_0T9J8DLU",
-//     authDomain: "joyride-app-1.firebaseapp.com",
-//     databaseURL: "https://joyride-app-1.firebaseio.com",
-//     projectId: "joyride-app-1",
-//     storageBucket: "joyride-app-1.appspot.com",
-//     messagingSenderId: "728902455010"
-//   };
-//   firebase.initializeApp(config);
-// //  uncomment this and move it once button click events are set up
-//   firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-//     // Handle Errors here.
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     // ...
-//    });
-//    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-//     // Handle Errors here.
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     // ...
-//    });
-   
-//    firebase.auth().signOut().then(function() {
-//     // Sign-out successful.
-//    }).catch(function(error) {
-//     // An error happened.
-//    });
 
-// //firebase login function
-
-// function login() {
-//            function newLoginHappened(user) {
-//                if (user) {
-//                    // user is signed in
-//                    app(user);
-//                } else {
-//                    var provider = new firebase.auth.GoogleAuthProvider();
-//                    firebase.auth().signInWithRedirect(provider);
-//                }
-//            }
-//            firebase.auth().onAuthStateChanged(newLoginHappened)
-//        }
-
-// // twitter and facebook logins
-
-// var provider = new firebase.auth.FacebookAuthProvider();
-
-// firebase.auth().signInWithPopup(provider).then(function(result) {
-//   // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-//   var token = result.credential.accessToken;
-//   // The signed-in user info.
-//   var user = result.user;
-//   // ...
-// }).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // The email of the user's account used.
-//   var email = error.email;
-//   // The firebase.auth.AuthCredential type that was used.
-//   var credential = error.credential;
-//   // ...
-// });
-
-
-// var provider = new firebase.auth.TwitterAuthProvider();
-// firebase.auth().signInWithPopup(provider).then(function(result) {
-//   // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-//   // You can use these server side with your app's credentials to access the Twitter API.
-//   var token = result.credential.accessToken;
-//   var secret = result.credential.secret;
-//   // The signed-in user info.
-//   var user = result.user;
-//   // ...
-// }).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // The email of the user's account used.
-//   var email = error.email;
-//   // The firebase.auth.AuthCredential type that was used.
-//   var credential = error.credential;
-//   // ...
-// });
-
-var latitude;
-var longitude;
-var origin;
-var destination;
+// var latitude;
+// var longitude;
+// var origin;
+// var destination;
 
 var config = {
     apiKey: "AIzaSyDkWIDbHJgspkk_IHcw0MqkYHGbe8Xy7HQ",
