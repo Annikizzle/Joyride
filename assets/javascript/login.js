@@ -49,8 +49,19 @@ $(".register form").on("submit", function(event){
     });
 
     firebase.auth().onAuthStateChanged(function(user){
+
+        $(".route form").off();
+
         if(user){
             console.log("User is signed in.");
+
+            $(".route form").on("submit", function(event){
+                event.preventDefault();
+
+                var route = $(".route .text").val();
+
+                firebase.database().ref("/users/" + user.uid).child("/routes/").push(route);
+            })
         } else {
             console.log("No user logged in..")
         }
