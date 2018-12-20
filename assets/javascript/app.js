@@ -118,68 +118,11 @@ $.ajax({
 }).then(function(response) {
   console.log(response);
 });
-  // firebase
-
 
 // var latitude;
 // var longitude;
 // var origin;
 // var destination;
-
-var config = {
-    apiKey: "AIzaSyDkWIDbHJgspkk_IHcw0MqkYHGbe8Xy7HQ",
-    authDomain: "group-project-1-318b8.firebaseapp.com",
-    databaseURL: "https://group-project-1-318b8.firebaseio.com",
-    projectId: "group-project-1-318b8",
-    storageBucket: "group-project-1-318b8.appspot.com",
-    messagingSenderId: "426857147168"
-  };
-
-  firebase.initializeApp(config);
-
-  var database = firebase.database();
-
-// get elements
-  const txtEmail = document.getElementById("txtEmail")
-  const txtPassword = document.getElementById("txtPassword")
-  const btnLogin = document.getElementById("btnLogin")
-  const btnSignUp = document.getElementById("btnSignUp")
-  const btnSignIn = document.getElementById("btnSignIn")
-
-// add login event
-  btnLogin.addEventListener("click", e => {
-// get email/password
-    const email = txtEmail.val().trim();
-    const pass = txtPassword.val().trim();
-    const auth = firebase.auth();
-// sign in
-    const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
-  });
-
-// sign up event
-  btnSignUp.addEventListener("click", e => {
-// get email/password
-    const email = txtEmail.val().trim();
-    const pass = txtPassword.val().trim();
-    const auth = firebase.auth();
-// create user in firebase storage
-    const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
-  });
-
-// check if user is logged in
-  firebase.auth().onAuthStateChanged(firebaseUser => {
-    if (firebaseUser) {
-        console.log(firebaseUser);
-// *TODO*: add button change feature here
-    } else {
-        console.log("You are not logged in.");
-    }
-  });
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function getUserLocation(){
     navigator.geolocation.getCurrentPosition(function(position){
