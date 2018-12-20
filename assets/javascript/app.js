@@ -1,6 +1,7 @@
 // maps 
-
-var coordsStringArray = [];
+var cityIdArray = [];  // this is the list of all city IDs populated from the .json file
+var cityIdSearchArray = [];  // this is the list of city IDs that we will be getting weather for
+var coordsStringArray = [];  // this is the coordinates in string form. will be modified to remove extra characters
 
 // use these variables to send the the distance calulator
 var startPoint = {
@@ -11,10 +12,74 @@ var endPoint = {
   lat: 0,
   lng: 0
 };
+var latlng = {
+  lat: 41.692611,
+  lng: -81.192178
+};
 
 // these variables are in a format that can be sent to a weather API call
 var startPointString;
 var endPointString;
+
+function getCityId(lat, lng) {
+  // get the list of city IDs from the .json file. reference this list to get city id using lat/lng values
+  var distance;
+
+  for (i=0; i < cityIdArray.length; i++) {
+    distance = getDistanceFromLatLonInKm(lat, lng, cityIdArray[i].coord.lat, cityIdArray[i].coord.lon);
+    if (distance <= 50) {
+      cityIdSearchArray.push(cityIdArray[i].id);
+      //console.log(cityIdArray[i].name);
+      //console.log(cityIdArray[i].id);
+      break;
+    }
+  } 
+  //console.log(cityIdSearchArray);
+  //console.log("end");
+}
+
+function getCityIdList(StringArray){ // this function will get a list of city IDs from the cityIdArray variable. Pass lat/lng array into this function
+  console.log("values pushed to getCityIdList(): " + StringArray);
+  var lat;
+  var lng;
+  var stringArray = [];
+
+  for (i=0; i < StringArray.length; i++) {
+    stringArray = StringArray[i].split(",");
+    lat = stringArray[0];
+    lng = stringArray[1];
+    console.log("Lat: "+lat);
+    console.log("Lng: "+lng);
+    getCityId(lat, lng);
+  }
+  console.log("cityIdSearchArray: " + cityIdSearchArray);
+  // return array;
+}
+
+function updateCards(city, weather) {
+  var cardBlock = $("<div>");
+  var cityLabel = $("<h4>");
+  var weatherLabel = $("<p>");
+  var cardFooter = $("<div>");
+  var footerText = $("<p>");
+
+  cityLabel.attr("class", "card-title");
+  weatherLabel.attr("class", "card-text");
+  cityLabel.text(city);
+  weatherLabel.text(weather);
+  cardBlock.attr("class", "card-block");
+  cardFooter.attr("class", "card-footer");
+  footerText.attr("class", "card-text text-right");
+  
+  footerText.text("Save this route");
+
+  cardBlock.append(cityLabel);
+  cardBlock.append(weatherlabel);
+  cardFooter.append(footerText);
+
+  $("#weather-card").append(cardBlock);
+  $("#weather-card").append(cardFooter);
+}
 
 // initialize the map when the page loads
 function initMap() {
@@ -48,11 +113,13 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     destination: document.getElementById('end').value,
     travelMode: 'DRIVING'
   }, function(response, status) {
-      console.log(response);
+      // console.log(response);
       // console.log(response.routes[0].overview_path[15].toString()); this .toString function will return the lat/lng values as a single string
     if (status === 'OK') {
       directionsDisplay.setDirections(response);
       coordsStringArray = [];
+      getCityId(response.routes[0].overview_path[0].lat(), response.routes[0].overview_path[0].lng());
+      // updateCards("Cleveland", "Rain");
 
       // set the starting point of the route
       startPoint.lat = response.routes[0].overview_path[0].lat();
@@ -65,23 +132,31 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       
       for (var i=1; i < response.routes[0].overview_path.length; i++) {
         // this if statement will push the coordinates 
-        if (getDistanceFromLatLonInKm(startPoint.lat, startPoint.lng, response.routes[0].overview_path[i].lat(), response.routes[0].overview_path[i].lng()) >= 80) {
+        if (getDistanceFromLatLonInKm(startPoint.lat, startPoint.lng, response.routes[0].overview_path[i].lat(), response.routes[0].overview_path[i].lng()) >= 80 ) { // 80km ~ 50 miles
           
           // push the coords to the array
           coordsStringArray.push(cleanString(response.routes[0].overview_path[i].toString()));
 
           // set the new startpoint for the distance calculation
-          startPoint.lat = response.routes[0].overview_path[i].lat()
-          startPoint.lng = response.routes[0].overview_path[i].lng()
+          startPoint.lat = response.routes[0].overview_path[i].lat();
+          startPoint.lng = response.routes[0].overview_path[i].lng();
         }
       }
-      console.log("Array: "+ coordsStringArray);
+      console.log("start");
+      // cityIdSearchArray = getCityIdList(coordsStringArray);
+      // console.log("city id list: " + cityIdSearchArray);
+
+      // console.log("Array: "+ coordsStringArray);
     } else {
       //window.alert('Directions request failed due to ' + status);
     }
   });
 }
 
+$("#test").on("click", function() {
+  updateCards("Cleveland", "Rain");
+  cityIdSearchArray = getCityIdList(coordsStringArray);
+})
 // Get the distance between 2 latlng points
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) { 
   var R = 6371; // Radius of the earth in km
@@ -100,15 +175,11 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 
 // get the list of city IDs from the .json file. reference this list to get city id using lat/lng values
 $.getJSON("assets/json/city.list.json", function(json) {
-  console.log(json);
+  cityIdArray = json;
 }); // cors error in chrome, but works fine in firefox
 
 function deg2rad(deg) {
   return deg * (Math.PI/180)
-}
-var latlng = {
-  lat: 41.692611,
-  lng: -81.192178
 }
 
 var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyBLjJhcaHNLroE3ch8eeLZJEmtA1fziUFg";
@@ -116,13 +187,8 @@ $.ajax({
   url: queryURL,
   method: "GET"
 }).then(function(response) {
-  console.log(response);
+  // console.log(response);
 });
-
-// var latitude;
-// var longitude;
-// var origin;
-// var destination;
 
 function getUserLocation(){
     navigator.geolocation.getCurrentPosition(function(position){
@@ -131,12 +197,13 @@ function getUserLocation(){
         // console.log(position.coords.latitude);
         // console.log(position.coords.longitude);
         var latlong = position.coords.latitude + "," + position.coords.longitude;
-        console.log(latlong);
+        // console.log(latlong);
         
         $("#mapsImage").attr("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyBLjJhcaHNLroE3ch8eeLZJEmtA1fziUFg&q="+latlong+"&center="+latlong)
 
     })
 }
+
 
 function getWeather() {
     var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?zip=44092,us&appid=f9d254aedad74e95688746dad9882b99";
@@ -150,44 +217,47 @@ function getWeather() {
 
 }
 
-function getRoute() {
+function updateWeatherCards(){
 
-    $("#mapsImage").attr("src", "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBLjJhcaHNLroE3ch8eeLZJEmtA1fziUFg&origin="+origin+"&destination="+destination)
 }
-origin = "cleveland+ohio";
-destination = "akron+ohio";
+// function getRoute() {
 
-// getRoute();
-var myOptions = {
-    zoom: 10,
-    center: new google.maps.LatLng(40.84, 14.25),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
+//     $("#mapsImage").attr("src", "https://www.google.com/maps/embed/v1/directions?key=AIzaSyBLjJhcaHNLroE3ch8eeLZJEmtA1fziUFg&origin="+origin+"&destination="+destination)
+// }
+// origin = "cleveland+ohio";
+// destination = "akron+ohio";
 
-   var directionsService = new google.maps.DirectionsService();
-   var directionsRequest = {
-     origin: origin,
-     destination: destination,
-     provideRouteAlternatives: true,
-     travelMode: google.maps.DirectionsTravelMode.DRIVING,
-     unitSystem: google.maps.UnitSystem.METRIC
-   };
+// // getRoute();
+// var myOptions = {
+//     zoom: 10,
+//     center: new google.maps.LatLng(40.84, 14.25),
+//     mapTypeId: google.maps.MapTypeId.ROADMAP
+//   };
+// var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
 
-directionsService.route(
-    directionsRequest,
-    function (response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            for (var i = 0, len = response.routes.length; i < len; i++) {
-                new google.maps.DirectionsRenderer({
-                    map: mapObject,
-                    directions: response,
-                    routeIndex: i
-                });
-            }
-        } else {
-            $("#error").append("Unable to retrieve your route<br />");
-        }
-    }
+//    var directionsService = new google.maps.DirectionsService();
+//    var directionsRequest = {
+//      origin: origin,
+//      destination: destination,
+//      provideRouteAlternatives: true,
+//      travelMode: google.maps.DirectionsTravelMode.DRIVING,
+//      unitSystem: google.maps.UnitSystem.METRIC
+//    };
 
- );
+// directionsService.route(
+//     directionsRequest,
+//     function (response, status) {
+//         if (status == google.maps.DirectionsStatus.OK) {
+//             for (var i = 0, len = response.routes.length; i < len; i++) {
+//                 new google.maps.DirectionsRenderer({
+//                     map: mapObject,
+//                     directions: response,
+//                     routeIndex: i
+//                 });
+//             }
+//         } else {
+//             $("#error").append("Unable to retrieve your route<br />");
+//         }
+//     }
+
+//  );
